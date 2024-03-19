@@ -7,15 +7,20 @@ import {Test, console} from "forge-std/Test.sol";
 
 contract SWilleNFT is ERC20 {
     address owner;
+    ParticularERC20 particularToken;
 
     constructor() ERC20("swille", "WIL"){
         owner = msg.sender;
         _mint(msg.sender, 100);
+        particularToken = new ParticularERC20();
     }
 
     function mint(address to, uint256 amount) public {
-//        transfer to owner; mint new SWilleNFT
-//    ParticularERC20(msg.sender).transfer(to, amount);
+        particularToken.transfer(to, amount);
         _mint(to, amount);
+    }
+
+    function getParticularToekn() public returns (ERC20){
+        return particularToken;
     }
 }

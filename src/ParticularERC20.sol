@@ -7,7 +7,7 @@ contract ParticularERC20 is ERC20 {
     address owner;
     constructor() ERC20("PARTICULARNFT", "pnft"){
         owner = msg.sender;
-        _mint(msg.sender, 10);
+        _mint(msg.sender, 100);
     }
 
 

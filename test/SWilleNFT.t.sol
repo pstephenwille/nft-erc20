@@ -12,7 +12,6 @@ contract SWiilleNFTTest is Test {
     }
 
     function test_newContract() public {
-        console.log('xx', sut.totalSupply());
         assertEq("swille", sut.name());
     }
 
@@ -20,4 +19,9 @@ contract SWiilleNFTTest is Test {
         sut.mint(msg.sender, 10);
         assertEq(sut.totalSupply(), 110);
     }
+
+    function test_totalSupply() public {
+        assertEq(100, sut.totalSupply());
+    }
+
 }
