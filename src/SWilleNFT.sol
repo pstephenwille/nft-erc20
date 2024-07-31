@@ -6,21 +6,26 @@ import {ParticularERC20} from "./ParticularERC20.sol";
 import {Test, console} from "forge-std/Test.sol";
 
 contract SWilleNFT is ERC20 {
-    address owner;
-    ParticularERC20 particularToken;
+    address public immutable owner;
+    ParticularERC20 public particularToken;
 
-    constructor() ERC20("swille", "WIL"){
+    constructor() ERC20("wille", "swille"){
         owner = msg.sender;
         _mint(msg.sender, 100);
         particularToken = new ParticularERC20();
+
+        console.log('addresses ', owner,particularToken.owner());
+        console.log('part', balanceOf(particularToken.owner()));
     }
 
-    function mint(address to, uint256 amount) public {
-        particularToken.transfer(to, amount);
-        _mint(to, amount);
+    function purchaseSwilleNftWithParticularNFT(address from, address to, uint256 amount) public {
+        particularToken.approve(particularToken.owner(), amount);
+//        particularToken.transferFrom(particularToken.owner(), owner, amount);
+        particularToken.transfer(owner, amount);
+
     }
 
-    function getParticularToekn() public returns (ERC20){
+    function getParticularToken() public view returns (ParticularERC20){
         return particularToken;
     }
 }

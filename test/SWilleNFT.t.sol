@@ -3,25 +3,28 @@ pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
 import {SWilleNFT} from "../src/SWilleNFT.sol";
+import {ParticularERC20} from "../src/ParticularERC20.sol";
 
-contract SWiilleNFTTest is Test {
+
+contract SWilleNFTTest is Test {
     SWilleNFT public sut;
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
 
     function setUp() public {
         sut = new SWilleNFT();
     }
 
     function test_newContract() public {
-        assertEq("swille", sut.name());
+        assertEq("wille", sut.name());
+        assertEq(100, sut.balanceOf(sut.owner()));
     }
 
-    function test_mint() public {
-        sut.mint(msg.sender, 10);
-        assertEq(sut.totalSupply(), 110);
-    }
+    function test_purchaseSwilleNftWithParticularErc20Token() public {
+//        vm.expectEmit(true, true, false, true);
+//        emit Transfer(particularToken.owner(), sut.owner(), 10);
 
-    function test_totalSupply() public {
-        assertEq(100, sut.totalSupply());
+//        sut.purchaseSwilleNftWithParticularNFT(particularToken.owner(), sut.owner(), 10);
     }
 
 }

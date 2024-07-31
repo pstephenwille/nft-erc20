@@ -1,14 +1,17 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-import {ERC20} from "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
+import {ERC20} from "lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
+import {Test, console} from "forge-std/Test.sol";
 
 contract ParticularERC20 is ERC20 {
-    address owner;
+    address public immutable owner;
+
     constructor() ERC20("PARTICULARNFT", "pnft"){
         owner = msg.sender;
-        _mint(msg.sender, 100);
+        _mint(owner, 100);
+
+        console.log('addr-ctor', owner);
+        console.log('part-ctor', balanceOf(owner));
     }
-
-
 }
