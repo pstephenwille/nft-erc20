@@ -22,9 +22,13 @@ contract SWilleNFTTest is Test {
 
     function test_purchaseSwilleNftWithParticularErc20Token() public {
 //        vm.expectEmit(true, true, false, true);
-//        emit Transfer(particularToken.owner(), sut.owner(), 10);
+//        emit Transfer(sut.particularToken.owner(), sut.owner(), 10);
+        sut.purchaseSwilleNftWithParticularNFT(sut.particularToken().owner(), sut.owner(), 10);
+        console.log('sut ', address(this).balance);
+        console.log('test ', address(sut.particularToken().owner()));
 
-//        sut.purchaseSwilleNftWithParticularNFT(particularToken.owner(), sut.owner(), 10);
+
+        assertEq(100, sut.balanceOf(sut.owner()));
     }
 
 }

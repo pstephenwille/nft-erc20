@@ -10,8 +10,5 @@ contract ParticularERC20 is ERC20 {
     constructor() ERC20("PARTICULARNFT", "pnft"){
         owner = msg.sender;
         _mint(owner, 100);
-
-        console.log('addr-ctor', owner);
-        console.log('part-ctor', balanceOf(owner));
     }
 }
