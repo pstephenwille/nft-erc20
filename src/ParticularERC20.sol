@@ -11,4 +11,8 @@ contract ParticularERC20 is ERC20 {
         owner = msg.sender;
         _mint(owner, 100);
     }
+
+    receive() external payable  {
+        console.log('receive ', msg.value);
+    }
 }

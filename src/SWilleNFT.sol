@@ -15,18 +15,18 @@ contract SWilleNFT is ERC20 {
         particularToken = new ParticularERC20();
     }
 
-    function purchaseSwilleNftWithParticularNFT(address from, address to, uint256 amount) public {
-        particularToken.approve(from, amount);
-//        particularToken.transferFrom(from, to, amount);
-        particularToken.transfer(to, amount);
+    receive() external payable  {
+        console.log('receive ', msg.value);
+    }
 
+    function purchaseSwilleNftWithParticularNFT(address from, address to, uint256 amount) external payable {
+        particularToken.approve(from, amount);
+        particularToken.transferFrom(from, to, amount);
+//        particularToken.transfer(to, amount);x
     }
 
     function getParticularToken() public view returns (ParticularERC20){
         return particularToken;
     }
 
-     receive() external payable  {
-        console.log('foo', msg.value);
-    }
 }
